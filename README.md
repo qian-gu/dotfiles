@@ -7,28 +7,28 @@
 
 ## Feature
 
-- vimrc for vim
-- zplugrc for zplug
+- .vimrc for vim
+- .zshrc for zsh
 
 ## Usage
 
-git clone https://github.com/qian-gu/runcom
+git clone https://github.com/qian-gu/dotfiles
 
 ### vimrc
 
 ```bash
 # install vundle
 git clone https://github.com/VundleVim/Vundle.vim.git ~/.vim/bundle/Vundle.vim
-cp runcom/.vimrc ~
+cp dotfiles/.vimrc ~
 # launch vim and run :PluginInstall
 ```
 
-### zplugrc
+### zshrc
 
 ```bash
 # install zplug
 git clone git@github.com:zplug/zplug.git ~/
-cat zplugrc >> ~/.zshrc
+cp dotfiles/.zshrc ~/.zshrc
 # install zsh plugins
-zplug install
+source ~/.zshrc
 ```

@@ -25,7 +25,6 @@ Plugin 'nathanaelkane/vim-indent-guides'
 Plugin 'SuperTab'
 Plugin 'snipMate'
 Plugin 'L9'
-Plugin 'junegunn/fzf', {'do': { -> fzf#install()}}
 Plugin 'junegunn/fzf.vim'
 Plugin 'a.vim'
 Plugin 'c.vim'
@@ -483,6 +482,7 @@ nmap <leader>chu :CustomHeaderUpdate <CR>
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Config fzf
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""
+set rtp+=~/.fzf
 nnoremap <silent> ff :Files<CR>
 nnoremap <silent> fb :Buffers<CR>
 nnoremap <silent> fl :Lines<CR>
