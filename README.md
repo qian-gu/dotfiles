@@ -33,11 +33,3 @@ cp dotfiles/.zshrc ~/.zshrc
 source ~/.zshrc
 ```
 
-### .ctags
-
-This file add support for language systemverilog.
-
-```bash
-# install ctags first
-cp dotfiles/.ctags ~/
-```
