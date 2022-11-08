@@ -14,7 +14,7 @@
 
 git clone https://github.com/qian-gu/dotfiles
 
-### vimrc
+### .vimrc
 
 ```bash
 # install vundle
@@ -23,7 +23,7 @@ cp dotfiles/.vimrc ~
 # launch vim and run :PluginInstall
 ```
 
-### zshrc
+### .zshrc
 
 ```bash
 # install zplug
@@ -31,4 +31,13 @@ git clone git@github.com:zplug/zplug.git ~/
 cp dotfiles/.zshrc ~/.zshrc
 # install zsh plugins
 source ~/.zshrc
+```
+
+### .ctags
+
+This file add support for language systemverilog.
+
+```bash
+# install ctags first
+cp dotfiles/.ctags ~/
 ```

@@ -37,6 +37,22 @@ fi
 # Then, source plugins and add commands to $PATH
 zplug load --verbose
 
+######################## custom #########################
+
+export HISTSIZE=100000
+
+export PATH=$HOME/.local/bin:$PATH
+
+alias ls='ls --color=auto'
+alias la='ls -a'
+alias ll='ls -al'
+alias grep='grep --color'
+alias bat='/usr/bin/batcat'
+
+# automatch
+autoload -Uz compinit && compinit
+zstyle ':completion:*' matcher-list 'm:{[:lower:][:upper:]}={[:upper:][:lower:]}' 'm:{[:lower:][:upper:]}={[:upper:][:lower:]} l:|=* r:|=*' 'm:{[:lower:][:upper:]}={[:upper:][:lower:]} l:|=* r:|=*' 'm:{[:lower:][:upper:]}={[:upper:][:lower:]} l:|=* r:|=*'
+
 ######################## fzf #########################
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
@@ -49,16 +65,3 @@ export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
 
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
-
-######################## common #########################
-
-export PATH=$HOME/.local/bin:$PATH
-
-alias ls='ls --color=auto'
-alias la='ls -a'
-alias ll='ls -al'
-alias grep='grep --color'
-
-# automatch
-autoload -Uz compinit && compinit
-zstyle ':completion:*' matcher-list 'm:{[:lower:][:upper:]}={[:upper:][:lower:]}' 'm:{[:lower:][:upper:]}={[:upper:][:lower:]} l:|=* r:|=*' 'm:{[:lower:][:upper:]}={[:upper:][:lower:]} l:|=* r:|=*' 'm:{[:lower:][:upper:]}={[:upper:][:lower:]} l:|=* r:|=*'
