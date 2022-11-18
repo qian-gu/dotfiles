@@ -13,7 +13,7 @@
 
 ## Usage
 
-````bash
+```bash
 git clone https://github.com/qian-gu/dotfiles
 ```
 
