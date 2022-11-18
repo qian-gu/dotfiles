@@ -1,4 +1,4 @@
-# runcom
+# dotfiles
 
 [![Commitizen friendly](https://img.shields.io/badge/commitizen-friendly-brightgreen.svg)](http://commitizen.github.io/cz-cli/)
 [![Conventional Commits](https://img.shields.io/badge/Conventional%20Commits-1.0.0-%23FE5196?logo=conventionalcommits&logoColor=white)](https://conventionalcommits.org)
@@ -9,10 +9,13 @@
 
 - .vimrc for vim
 - .zshrc for zsh
+- .gitconfig for git
 
 ## Usage
 
+````bash
 git clone https://github.com/qian-gu/dotfiles
+```
 
 ### .vimrc
 
@@ -20,7 +23,7 @@ git clone https://github.com/qian-gu/dotfiles
 # install vundle
 git clone https://github.com/VundleVim/Vundle.vim.git ~/.vim/bundle/Vundle.vim
 cp dotfiles/.vimrc ~
-# launch vim and run :PluginInstall
+vim +PluginInstall
 ```
 
 ### .zshrc
@@ -31,5 +34,10 @@ git clone git@github.com:zplug/zplug.git ~/
 cp dotfiles/.zshrc ~/.zshrc
 # install zsh plugins
 source ~/.zshrc
+```
+### .gitconfig
+
+```bash
+cp dotfiles/.gitconfig ~
 ```
 
