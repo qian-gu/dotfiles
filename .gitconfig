@@ -55,3 +55,6 @@
 	process = git-lfs filter-process
 [ghq]
   root = ~/.ghq
+[user]
+	email = imqiangu@gmail.com
+	name = Qian Gu
