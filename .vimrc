@@ -71,7 +71,8 @@ Plugin 'VundleVim/Vundle.vim'
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 Plugin 'c.vim'
 Plugin 'Yggdroot/indentLine'
-Plugin 'vhda/verilog_systemverilog.vim'
+Plugin 'nachumk/systemverilog.vim'
+"Plugin 'vhda/verilog_systemverilog.vim'
 Plugin 'plasticboy/vim-markdown'
 Plugin 'iamcco/markdown-preview.nvim'
 Plugin 'tpope/vim-surround'
@@ -80,12 +81,10 @@ Plugin 'easymotion/vim-easymotion'
 " Completion
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 Plugin 'neoclide/coc.nvim'
-Plugin 'jiangmiao/auto-pairs'
-Plugin 'ervandew/supertab'
-Plugin 'preservim/tagbar'
 Plugin 'honza/vim-snippets'
-Plugin 'sirver/ultisnips'
 Plugin 'qian-gu/ultisnippets.vim'
+Plugin 'jiangmiao/auto-pairs'
+Plugin 'preservim/tagbar'
 Plugin 'ludovicchabant/vim-gutentags'
 Plugin 'tpope/vim-fugitive'
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -108,6 +107,7 @@ Plugin 'vim-signature'
 Plugin 'vim-airline/vim-airline'
 Plugin 'vim-airline/vim-airline-themes'
 Plugin 'junegunn/fzf.vim'
+Plugin 'qian-gu/vim-systemc'
 " Colorschemes
 Plugin 'sickill/vim-monokai'
 Plugin 'tomasr/molokai'
@@ -245,11 +245,20 @@ set cursorline
 " Show command when typing
 set showcmd
 
+set foldmethod=indent
+set foldlevel=1
+
+set conceallevel=0
+
+let g:vim_markdown_conceal = 0
+let g:vim_markdown_conceal_code_blocks = 0
+
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Colors and Fonts
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Enable syntax highlight
 syntax enable
+syntax on
 
 " Set regular expression engine automatically
 set regexpengine=0
@@ -303,7 +312,7 @@ set tw=100
 
 set ai "Auto indent
 "Disbale smart indent for verilog file because of plugin vhda/verilog_systemverilog
-au Filetype verilog,systemverilog,verilog_systemverilog set nosi
+"au Filetype verilog,systemverilog,verilog_systemverilog set nosi
 set wrap "Wrap lines
 
 
@@ -552,9 +561,18 @@ let g:SignatureMap = {
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Plugin 'qian-gu/vim-custom-header'
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""
+let g:DoxygenToolkit_commentType = "C++"
+let g:DoxygenToolkit_authorName = "Qian Gu"
+let g:load_doxygen_syntax=1
+
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" Plugin 'qian-gu/vim-custom-header'
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 let g:custom_header_author     = 'qian.gu'
 let g:custom_header_email      = 'guqian110@gmail.com'
 let g:custom_header_company_en = 0
+let g:custom_header_revision_en = 0
 
 nmap <leader>chi :CustomHeaderInsert <CR>
 nmap <leader>chu :CustomHeaderUpdate <CR>
@@ -583,7 +601,7 @@ let g:strip_whitespace_confirm = 0 "Disable confirm
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Plugin 'vhda/verilog_systemverilog.vim'
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""
-autocmd FileType verilog,systemverilog,verilog_systemverilog :VerilogErrorFormat verilator 1
+"autocmd FileType verilog,systemverilog,verilog_systemverilog :VerilogErrorFormat verilator 1
 
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -607,7 +625,7 @@ nnoremap <silent> <leader>ag :Ag <C-R><C-W><CR>
 let g:bufExplorerDetailedHelp     = 0      " Don't show detailed help.
 let g:bufExplorerShowRelativePath = 1      " Show relative paths.
 let g:bufExplorerSortBy           = 'mru'  " Sort by most recently used.
-let g:bufExplorerShowUnlisted     = 1      " Show unlisted buffers.
+let g:bufExplorerShowUnlisted     = 0      " Show unlisted buffers.
 
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -622,6 +640,7 @@ nnoremap <silent> <F8> :TagbarToggle<CR>
 " NERDTree
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""
 let NERDTreeDirArrows=1
+let NERDTreeShowHidden=1
 
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -667,6 +686,15 @@ nmap <leader>+ <Plug>AirlineSelectNextTab
 set sessionoptions-=curdir
 set sessionoptions+=sesdir
 
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" Git
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" warp at column 72 for commit body
+autocmd Filetype gitcommit setlocal spell textwidth=72
+
+" Use <Tab> and <S-Tab> to navigate the completion list
+"inoremap <expr> <Tab> coc#pum#visible() ? coc#pum#next(1) : "\<Tab>"
+"inoremap <expr> <S-Tab> coc#pum#visible() ? coc#pum#prev(1) : "\<S-Tab>"
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Plugin 'neoclide/coc.nvim'
@@ -825,3 +853,35 @@ nnoremap <silent><nowait> <space>j  :<C-u>CocNext<CR>
 nnoremap <silent><nowait> <space>k  :<C-u>CocPrev<CR>
 " Resume latest coc list.
 nnoremap <silent><nowait> <space>p  :<C-u>CocListResume<CR>
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" coc.nvim:snippets
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" Use <C-l> for trigger snippet expand.
+imap <C-l> <Plug>(coc-snippets-expand)
+
+" Use <C-j> for select text for visual placeholder of snippet.
+vmap <C-j> <Plug>(coc-snippets-select)
+
+" Use <C-j> for jump to next placeholder, it's default of coc.nvim
+let g:coc_snippet_next = '<c-j>'
+
+" Use <C-k> for jump to previous placeholder, it's default of coc.nvim
+let g:coc_snippet_prev = '<c-k>'
+
+" Use <C-j> for both expand and jump (make expand higher priority.)
+imap <C-j> <Plug>(coc-snippets-expand-jump)
+
+" Use <leader>x for convert visual selected code to snippet
+xmap <leader>x  <Plug>(coc-convert-snippet)
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" coc.nvim:svlangserver
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" Rebuild index mannually
+command! SvBuildIndex call CocRequest("svlangserver", 'workspace/executeCommand',
+  \ {'command': 'systemverilog.build_index'})
+" Show hierarchy
+command! -range SvReportHierarchy call CocRequest("svlangserver", 'workspace/executeCommand',
+  \ {'command': 'systemverilog.report_hierarchy',
+  \ 'arguments': [input('Module/interface: ', <range> == 0 ? "" : expand("<cword>"))]})
